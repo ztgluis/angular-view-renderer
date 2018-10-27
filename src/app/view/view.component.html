@@ -1,0 +1,25 @@
+<div *ngIf="view; else loading">
+    <nav>
+        <a *ngFor="let nav of view.nav" [routerLink]="['/', view.path[0], nav.path]" routerLinkActive #rla="routerLinkActive">
+            {{ nav.title }}
+        </a>
+    </nav>
+
+    <div>
+        <nav *ngIf="view.subnav">
+            <a *ngFor="let subnav of view.subnav" [routerLink]="['/', view.path[0], view.path[1], subnav.path]"
+                routerLinkActive #rla="routerLinkActive">
+                {{ subnav.title }}
+            </a>
+        </nav>
+
+        <div class="content">
+            {{ view.content }}
+        </div>
+    </div>
+
+</div>
+
+<ng-template #loading>
+    <div>loading...</div>
+</ng-template>
